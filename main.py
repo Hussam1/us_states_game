@@ -15,10 +15,7 @@ while len(guess_state) < 50:
                                     prompt="what is your next state guess?").title()
 
     if answer_state == "Exit":
-        missing_states = []
-        for state in all_states:
-            if state not in guess_state:
-                missing_states.append(state)
+        missing_states = [state for state in all_states if state not in guess_state]
         missing_df = pd.DataFrame(missing_states)
         missing_df.to_csv("states_to_learn.csv")
         break
